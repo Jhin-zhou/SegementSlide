@@ -165,6 +165,12 @@ extension SegementSlideDefaultSwitcherView {
             button.tag = index
             button.setTitleColor(innerConfig.normalTitleColor, for: .normal)
             button.addTarget(self, action: #selector(didClickTitleButton), for: .touchUpInside)
+            button.layer.cornerRadius = innerConfig.cornerRadius
+            button.layer.borderWidth = innerConfig.borderWid
+            button.layer.masksToBounds = true
+            button.layer.borderColor = innerConfig.normalBorderColor
+            button.backgroundColor = innerConfig.normalBgColor
+            
             scrollView.addSubview(button)
             titleButtons.append(button)
         }
@@ -190,8 +196,8 @@ extension SegementSlideDefaultSwitcherView {
                 buttonWidth = (bounds.width-innerConfig.horizontalMargin*2)/CGFloat(titleButtons.count)
             case .segement:
                 let title = titleButton.title(for: .normal) ?? ""
-                let normalButtonWidth = title.boundingWidth(with: innerConfig.normalTitleFont)
-                let selectedButtonWidth = title.boundingWidth(with: innerConfig.selectedTitleFont)
+                let normalButtonWidth = title.boundingWidth(with: innerConfig.normalTitleFont) + innerConfig.innerMargin
+                let selectedButtonWidth = title.boundingWidth(with: innerConfig.selectedTitleFont) + innerConfig.innerMargin
                 buttonWidth = selectedButtonWidth > normalButtonWidth ? selectedButtonWidth : normalButtonWidth
             }
             titleButton.frame = CGRect(x: offsetX, y: 0, width: buttonWidth, height: scrollView.bounds.height)
@@ -225,6 +231,8 @@ extension SegementSlideDefaultSwitcherView {
             let selectedTitleButton = titleButtons[selectedIndex]
             selectedTitleButton.setTitleColor(innerConfig.normalTitleColor, for: .normal)
             selectedTitleButton.titleLabel?.font = innerConfig.normalTitleFont
+            selectedTitleButton.backgroundColor = innerConfig.normalBgColor
+            selectedTitleButton.layer.borderColor = innerConfig.normalBorderColor
         }
         guard index >= 0, index < count else {
             return
@@ -232,6 +240,8 @@ extension SegementSlideDefaultSwitcherView {
         let titleButton = titleButtons[index]
         titleButton.setTitleColor(innerConfig.selectedTitleColor, for: .normal)
         titleButton.titleLabel?.font = innerConfig.selectedTitleFont
+        titleButton.backgroundColor = innerConfig.selectedBgColor
+        titleButton.layer.borderColor = innerConfig.selectedBorderColor
         if animated, indicatorView.frame != .zero {
             UIView.animate(withDuration: 0.25) {
                 self.indicatorView.frame = CGRect(x: titleButton.frame.origin.x+(titleButton.bounds.width-self.innerConfig.indicatorWidth)/2, y: self.frame.height-self.innerConfig.indicatorHeight, width: self.innerConfig.indicatorWidth, height: self.innerConfig.indicatorHeight)

@@ -26,6 +26,14 @@ public struct SegementSlideDefaultSwitcherConfig {
     public var badgeHeightForCountType: CGFloat
     public var badgeHeightForCustomType: CGFloat
     public var badgeFontForCountType: UIFont
+    //----带边框圆角
+    public var cornerRadius: CGFloat
+    public var borderWid: CGFloat
+    public var normalBorderColor: CGColor
+    public var selectedBorderColor: CGColor
+    public var normalBgColor: UIColor
+    public var selectedBgColor: UIColor
+    public var innerMargin: CGFloat
     
     public init(type: SwitcherType = .segement,
                 horizontalMargin: CGFloat = 16,
@@ -40,7 +48,15 @@ public struct SegementSlideDefaultSwitcherConfig {
                 badgeHeightForPointType: CGFloat = 9,
                 badgeHeightForCountType: CGFloat = 15,
                 badgeHeightForCustomType: CGFloat = 14,
-                badgeFontForCountType: UIFont = UIFont.systemFont(ofSize: 10, weight: .regular)) {
+                badgeFontForCountType: UIFont = UIFont.systemFont(ofSize: 10, weight: .regular),
+                cornerRadius: CGFloat = 0,
+                borderWid: CGFloat = 0,
+                normalBorderColor: CGColor = UIColor.clear.cgColor,
+                selectedBorderColor: CGColor = UIColor.clear.cgColor,
+                normalBgColor: UIColor = UIColor.clear,
+                selectedBgColor: UIColor = UIColor.clear,
+                innerMargin: CGFloat = 0
+                ) {
         self.type = type
         self.horizontalMargin = horizontalMargin
         self.horizontalSpace = horizontalSpace
@@ -55,6 +71,14 @@ public struct SegementSlideDefaultSwitcherConfig {
         self.badgeHeightForCountType = badgeHeightForCountType
         self.badgeHeightForCustomType = badgeHeightForCustomType
         self.badgeFontForCountType = badgeFontForCountType
+        
+        self.cornerRadius = cornerRadius
+        self.borderWid = borderWid
+        self.normalBorderColor = normalBorderColor
+        self.selectedBorderColor = selectedBorderColor
+        self.normalBgColor = normalBgColor
+        self.selectedBgColor = selectedBgColor
+        self.innerMargin = innerMargin
     }
     
 }
