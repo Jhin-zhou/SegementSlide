@@ -167,7 +167,7 @@ extension SegementSlideDefaultSwitcherView {
             button.addTarget(self, action: #selector(didClickTitleButton), for: .touchUpInside)
             button.layer.cornerRadius = innerConfig.cornerRadius
             button.layer.borderWidth = innerConfig.borderWid
-            button.layer.masksToBounds = true
+            button.layer.masksToBounds = innerConfig.cornerRadius > 0
             button.layer.borderColor = innerConfig.normalBorderColor
             button.backgroundColor = innerConfig.normalBgColor
             
